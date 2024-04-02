@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<ASPMVCAssign.Models.EmployeeEntities.Employee>
+<h1>Employees Data</h1>
+<table class="table">
+    <thead>
+        <tr>
+           <th>EmployeeId</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>BirthDate</th>
+            <th>Email</th>
+            <th>EmploymentDate</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Country</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td>@employee.EmployeeId</td>
+                <td>@employee.FirstName</td>
+                <td>@employee.LastName</td>
+                <td>@employee.BirthDate</td>
+                <td>@employee.Email</td>
+                <td>@employee.EmploymentDate</td>
+                <td>@employee.Address</td>
+                <td>@employee.City</td>
+                <td>@employee.State</td>
+                <td>@employee.Country</td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="Employee" asp-action="EditEmployee" asp-route-id="@employee.EmployeeId">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
