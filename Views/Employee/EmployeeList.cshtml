@@ -4,11 +4,21 @@
 @{
 }
 @model List<ASPMVCAssign.Models.EmployeeEntities.Employee>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+
+
 <h1>Employees Data</h1>
 <table class="table">
     <thead>
         <tr>
-           <th>EmployeeId</th>
+            <th>EmployeeId</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>BirthDate</th>
@@ -18,7 +28,7 @@
             <th>City</th>
             <th>State</th>
             <th>Country</th>
-           
+            <th>Actions</th> <!-- New column header for actions -->
         </tr>
     </thead>
     <tbody>
@@ -36,9 +46,56 @@
                 <td>@employee.State</td>
                 <td>@employee.Country</td>
                 <td>
-                    <a class="btn btn-primary" asp-controller="Employee" asp-action="EditEmployee" asp-route-id="@employee.EmployeeId">Edit</a>
+                    <!-- Edit button -->
+                    <a class="btn btn-primary" asp-controller="Employee" asp-action="EditEmployee" asp-route-EmployeeId="@employee.EmployeeId">Edit</a>
+
+                    <!-- Delete button with confirmation -->
+                    <button type="button" class="btn btn-danger" onclick="confirmDelete('@employee.EmployeeId')">Delete</button>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<!-- Confirmation modal -->
+<div id="confirmDeleteModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cancelDelete()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this employee?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="cancelDelete()">Cancel</button>
+
+                <form id="deleteForm" asp-controller="Employee" asp-action="DeleteEmployee" method="post">
+                    <input type="hidden" id="deleteEmployeeId" name="EmployeeId" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function confirmDelete(employeeId) {
+        $('#deleteEmployeeId').val(employeeId);
+        $('#confirmDeleteModal').modal('show');
+    }
+
+    function cancelDelete() {
+        $('#confirmDeleteModal').modal('hide');
+    }
+
+    // Add red color to close button on hover
+    $('.close').hover(function () {
+        $(this).css('color', 'red');
+    }, function () {
+        $(this).css('color', ''); // Reset color on mouseout
+    });
+</script>

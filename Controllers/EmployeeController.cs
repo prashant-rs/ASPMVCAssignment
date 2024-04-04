@@ -39,7 +39,7 @@ namespace ASPMVCAssign.Controllers
 
             await dbContext.EmployeeInfoData.AddAsync(employee);
             await dbContext.SaveChangesAsync();
-            return View(); 
+            return RedirectToAction("EmployeeList");
         }
 
         [HttpGet]
@@ -51,8 +51,15 @@ namespace ASPMVCAssign.Controllers
         public async Task<IActionResult> EditEmployee(int EmployeeId)
         {
             var employee = await dbContext.EmployeeInfoData.FindAsync(EmployeeId);
+
+            if (employee == null)
+            {
+                return NotFound(); // or handle the case where employee is not found
+            }
+
             return View(employee);
         }
+
         [HttpPost]
         public async Task<IActionResult>EditEmployee(Employee viewModel)
         {
@@ -72,7 +79,33 @@ namespace ASPMVCAssign.Controllers
                 employee.Country = viewModel.Country;
                 await dbContext.SaveChangesAsync(); 
             }    
-            return RedirectToAction("EditEmployee","Employee");
+            return RedirectToAction("EmployeeList");
         }
+        [HttpPost]
+        public IActionResult CancelDelete()
+        {
+            // Redirect to the EmployeeList action without performing any delete operation
+            return RedirectToAction("EmployeeList");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteEmployee(int EmployeeId)
+        {
+            var employee = await dbContext.EmployeeInfoData.FindAsync(EmployeeId);
+            if (employee == null)
+            {
+                return NotFound(); // Handle case where employee is not found
+            }
+
+            dbContext.EmployeeInfoData.Remove(employee);
+            await dbContext.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "Employee deleted successfully."; // Set success message in TempData
+
+            return RedirectToAction(nameof(EmployeeList)); // Redirect to employee list view
+        }
+
+
+
     }
 }

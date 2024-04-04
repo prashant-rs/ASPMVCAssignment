@@ -7,37 +7,64 @@
 
 <h1>Add Employee Data</h1>
 
-<form method="post">  <div class="mt-3">
-    <label class="form-label">FirstName</label>
-    <input type="text" class="form-control"name="FirstName" required>  </div>
-  <div class="mt-3">
-    <label class="form-label">LastName</label>
-    <input type="text" class="form-control" name="LastName" required>
-  </div>
-  <div class="mt-3">
-    <label class="form-label">BirthDate</label>
-    <input type="date" class="form-control" name="BirthDate" required>  </div>
-  <div class="mt-3">
-    <label class="form-label">Email</label>
-    <input type="email" class="form-control" name="Email" required>  </div>
-  <div class="mt-3">
-    <label class="form-label">EmploymentDate</label>
-    <input type="date" class="form-control" name="EmploymentDate" required>
-  </div>
-  <div class="mt-3">
-    <label class="form-label">Address</label>
-    <textarea class="form-control" name="Address" rows="3" required></textarea>  </div>
-  <div class="mt-3">
-    <label class="form-label">City</label>
-    <input type="text" class="form-control" name="City" required>
-  </div>
-  <div class="mt-3">
-    <label class="form-label">State</label>
-    <input type="text" class="form-control" name="State" required>
-  </div>
-  <div class="mt-3">
-    <label class="form-label">Country</label>
-    <input type="text" class="form-control" name="Country" required>
-  </div>
-  <button type="submit" class="btn btn-primary mt-3">Add Employee</button>
+<form method="post">
+    <div class="mt-3 row">
+        <label class="col-sm-2 col-form-label">First Name</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control form-control-sm" name="FirstName" required>
+        </div>
+    </div>
+    <div class="mt-3 row">
+        <label class="col-sm-2 col-form-label">Last Name</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control form-control-sm" name="LastName" required>
+        </div>
+    </div>
+    <div class="mt-3 row">
+        <label class="col-sm-2 col-form-label">Birth Date</label>
+        <div class="col-sm-6">
+            <input type="date" class="form-control form-control-sm" name="BirthDate" required>
+        </div>
+    </div>
+    <div class="mt-3 row">
+        <label class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-6">
+            <input type="email" class="form-control form-control-sm" name="Email" required>
+        </div>
+    </div>
+    <div class="mt-3 row">
+        <label class="col-sm-2 col-form-label">Employment Date</label>
+        <div class="col-sm-6">
+            <input type="date" class="form-control form-control-sm" name="EmploymentDate" required>
+        </div>
+    </div>
+    <div class="mt-3 row">
+        <label class="col-sm-2 col-form-label">Address</label>
+        <div class="col-sm-6">
+            <textarea class="form-control form-control-sm" name="Address" rows="3" required></textarea>
+        </div>
+    </div>
+    <div class="mt-3 row">
+        <label class="col-sm-2 col-form-label">City</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control form-control-sm" name="City" required>
+        </div>
+    </div>
+    <div class="mt-3 row">
+        <label class="col-sm-2 col-form-label">State</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control form-control-sm" name="State" required>
+        </div>
+    </div>
+    <div class="mt-3 row">
+        <label class="col-sm-2 col-form-label">Country</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control form-control-sm" name="Country" required>
+        </div>
+    </div>
+    <div class="mt-3 row">
+        <div class="col-sm-6 offset-sm-2">
+            <button type="submit" class="btn btn-primary btn-sm">Add Employee</button>
+        </div>
+    </div>
 </form>

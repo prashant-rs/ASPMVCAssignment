@@ -4,7 +4,7 @@ namespace ASPMVCAssign.Models.EmployeeEntities
 {
     public class Employee
     {
-        [Key]
+        //Guid EmpUniqueId { get; set; }
         public int EmployeeId { get; set; }
         //Guid EUniqueId { get; set; }
         public string FirstName { get; set; }
