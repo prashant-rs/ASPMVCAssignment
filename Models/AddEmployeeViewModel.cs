@@ -5,6 +5,7 @@ namespace ASPMVCAssign.Models
     public class AddEmployeeViewModel
     {
         //Guid EmpUniqueId { get; set; }
+        [Key]
         public int EmployeeId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
